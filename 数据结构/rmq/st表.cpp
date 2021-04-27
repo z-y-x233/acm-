@@ -1,3 +1,4 @@
+//f[i][j]表示从i开始长度为2^j中的最值
 ll f[N][60];
 int n, m;
 void ini() {
