@@ -1,12 +1,12 @@
-namespace sgt {
-	const int N = 1e6 + 100;
+struct sgt {
 	struct node
 	{
 		int l, r;
 		int lazy;
 		int sum;
-	}t[N];
+	}t[N << 2];
 	int val[N];
+	//
 	void pushdown(int p) {
 		t[p].sum += t[p].lazy * (t[p].r - t[p].l + 1);
 		t[p << 1].lazy += t[p].lazy;
@@ -60,4 +60,4 @@ namespace sgt {
 		if (r > mid) ans += query(l, r, p << 1 | 1);
 		return ans;
 	}
-}
+};

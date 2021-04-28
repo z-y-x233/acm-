@@ -1,5 +1,5 @@
 //主席树板子
-namespace zxt {
+struct zxt {
 	const int N = 2e5 + 100;
 	//主席树维护的是当前权值[l, r]中出现的数的数量
 	struct node
