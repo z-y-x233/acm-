@@ -2,7 +2,7 @@
 struct edge {
 	int v, to;
 } e[N];
-int h[N], cnt, n, m, r, P;
+int h[N], cnt, n;
 void add(int u, int v) {
 	e[cnt] = {v, h[u] };
 	h[u] = cnt++;
@@ -23,8 +23,8 @@ struct Sgt
 	int a[N];
 
 	void pushdown(int p) {
-		(t[p].sum += (t[p].r - t[p].l + 1) * t[p].lazy) %= P;
-		(t[p << 1].lazy += t[p].lazy) %= P; (t[p << 1 | 1].lazy += t[p].lazy) %= P;
+		t[p].sum += (t[p].r - t[p].l + 1) * t[p].lazy;
+		t[p << 1].lazy += t[p].lazy; t[p << 1 | 1].lazy += t[p].lazy;
 		t[p].lazy = 0;
 	}
 
@@ -67,7 +67,7 @@ struct Sgt
 		if (l <= mid) sum += query(l, r, p << 1);
 		if (r > mid) sum += query(l, r, p << 1 | 1);
 		pushup(p);
-		return sum % P;
+		return sum;
 	}
 };
 //树剖部分
@@ -77,7 +77,7 @@ struct sp
 	//树剖数组
 	Sgt sgt;
 	int f[N]; //f[i]: i的父节点
-	int son[N]; //son[i]: 每个点的重儿子
+	int son[N]; //son[i]: 每个点的重儿子	
 	int dep[N]; //dep[i]: i的深度
 	int size[N]; //size[i]: 以i为根的子树的大小
 	int top[N]; //top[i]： i所在链的顶点
@@ -87,14 +87,14 @@ struct sp
 	int cnt;//dfs序编号
 	//求每个点的深度, 父节点, 子树大小
 	void dfs1(int u, int fa) {
-		dep[u] = dep[fa] + 1;
+		dep[u] = dep[fa] + 1; //u结点深度为父节点深度+1
 		size[u] = 1;
 		f[u] = fa;
 		for (int i = h[u], v = e[i].v; ~i; i = e[i].to, v = e[i].v) {
 			if (v != fa) {
 				dfs1(v, u);
-				size[u] += size[v];
-				if (!son[u] || size[v] > size[son[u]]) son[u] = v;
+				size[u] += size[v]; //u子树加上所有子树大小
+				if (!son[u] || size[v] > size[son[u]]) son[u] = v; //若没有重儿子或当期儿子更重更新
 			}
 		}
 	}
@@ -103,6 +103,7 @@ struct sp
 		map[u] = ++cnt;
 		rmap[cnt] = u;
 		top[u] = topf;
+		//若有重儿子优先搜索重儿子, 这样所有链上的节点编号就是连续的
 		if (son[u]) dfs2(son[u], topf);
 		for (int i = h[u], v = e[i].v; ~i; i = e[i].to, v = e[i].v) {
 			if (v != f[u] && v != son[u]) {
@@ -126,12 +127,12 @@ struct sp
 		int ans = 0;
 		while (top[u] != top[v]) {
 			if (dep[top[u]] < dep[top[v]]) swap(u, v);
-			ans = (ans + sgt.query(map[top[u]], map[u], 1)) % P;
+			ans = (ans + sgt.query(map[top[u]], map[u], 1));
 			u = f[top[u]];
 
 		}
 		u = map[u], v = map[v];
-		ans = (ans + sgt.query(min(u, v), max(u, v), 1)) % P;
+		ans = (ans + sgt.query(min(u, v), max(u, v), 1));
 		return ans;
 	}
 	void add(int u, int v, int k) {
