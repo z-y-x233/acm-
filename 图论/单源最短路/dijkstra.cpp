@@ -6,7 +6,7 @@ struct edge {
 int h[N], cnt, d[N];
 
 void add(int u, int v, int w) {
-	e[cnt] = (edge) {v, w, h[u]};
+	e[cnt] = {v, w, h[u]};
 	h[u] = cnt++;
 }
 
@@ -14,7 +14,7 @@ void ini() {
 	memset(h, -1, sizeof h);
 	memset(d, 0x3f, sizeof d);
 }
-struct dij {
+struct dijk {
 	const static int N = 1e5 + 100;
 	//传入三个数组，求以u为源点到其他点的最短路，结果保存在d数组中
 	void dij(int* h, edge* e, int* d, int u) {
