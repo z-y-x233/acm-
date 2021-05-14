@@ -1,5 +1,3 @@
-
-
 void q_sort(int *a, int l, int r) {
 
 	if (l >= r) return;

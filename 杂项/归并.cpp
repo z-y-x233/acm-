@@ -3,6 +3,7 @@ const int N = 1e5 + 100;
 int t[N];
 
 void merge(int *a, int l, int r) {
+	int mid = l + r >> 1;
 	int i = l, j = mid + 1;
 	int cnt = l;
 	while (i <= mid && j <= r) {

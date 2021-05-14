@@ -2,7 +2,7 @@
 struct edge {
 	int v, to;
 } e[N];
-int h[N], cnt;
+int h[N], cnt, n;
 void add(int u, int v) {
 	e[cnt] = {v, h[u] };
 	h[u] = cnt++;
@@ -10,7 +10,6 @@ void add(int u, int v) {
 
 void ini() {
 	memset(h, -1, sizeof h);
-	cnt = 0;
 }
 
 //线段树部分
