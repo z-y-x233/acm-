@@ -48,4 +48,8 @@ struct Tarjan
 				low[u] = min(low[u], dfn[v]);
 		}
 	}
+
+
+
+	
 }tj;

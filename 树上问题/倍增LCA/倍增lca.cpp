@@ -31,5 +31,4 @@ struct LCA
         }
         return fa[u][0];
     }
-
 };
