@@ -1,0 +1,27 @@
+{
+
+    "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$", 
+    "working_dir": "${file_path}",
+    "selector": "source.c, source.c++", 
+    "shell": true,
+    "encoding":"utf-8", 
+    "variants": 
+    [
+        {
+            "name" : "Pipe Build and Run",
+            "cmd":["g++", "${file_path}\\\\${file_base_name}.cpp","-std=c++11",
+             "-o", "${file_path}\\\\${file_base_name}.exe","&","${file_path}\\\\${file_base_name}.exe", 
+             "<","${file_path}\\\\in",">","${file_path}\\\\out"]
+        },
+        {
+            "name" : "exe Build & Run",
+            "cmd" : ["g++", "${file_path}\\\\${file_base_name}.cpp", 
+                "-std=c++11", "-o", "${file_path}\\\\${file_base_name}","&","${file_path}\\\\${file_base_name}"]
+        },
+        {
+            "name":"Project B & R",
+            "cmd":["cmd","/c","g++","${file_path}\\\\$*.cpp","-std=c++11", 
+                "-o","${file_path}\\\\main.exe","&","start","cmd","/c","${file_path}\\\\main.exe & pause"]
+        }
+    ]
+}
