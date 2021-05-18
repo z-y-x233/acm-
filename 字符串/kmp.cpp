@@ -11,8 +11,7 @@ int Next[N];
 char s[N], s2[N];
 
 //luogu P3357 https://www.luogu.com.cn/problem/P3375
-class kmp {
-public:
+struct kmp {
     //next数组定义为以i结尾的最长公共前后缀，i从1开始
     void getNext(char* s, int* next) {
         int i = 2, j = 1, m = strlen(s + 1);

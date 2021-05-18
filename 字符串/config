@@ -1,1 +1,4 @@
 <kmp><kmp.cpp>
+<Trie树><Trie树.cpp>
+<AC自动机><AC自动机.cpp>
+<manacher><manacher.cpp>
