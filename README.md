@@ -1,3 +1,2 @@
-# acm-
-板子
-asdasdddd
+# ICPC-template
+自用板子
