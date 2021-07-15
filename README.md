@@ -1,2 +1,2 @@
-# acm-
-板子
+# ICPC-template
+自用板子
