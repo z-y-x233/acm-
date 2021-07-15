@@ -15,15 +15,16 @@ int main() {
     for (int i = 2; i <= n; ++i) {
         int l = 0, r = L;
         int res = 0;
+        //d[i]定义为长度为i的结尾的数字
         //因为对于d数组，整个数组是严格单调递增的
         //若存在j > i ,并且 d[j] < d[i],那么d[j]这个上升序列的倒数第二个数一定比d[i]小，因为序列严格单调上升
         //d[i]就可被替换为更小的数
         while (l < r) {
             int mid = l + r + 1 >> 1;
-            if (d[mid] < a[i]) {
+            if (d[mid] < a[i]) 
                 l = mid;
-            }
-            else r = mid - 1;
+            else 
+                r = mid - 1;
         }
         res = l;
         L = max(res + 1, L);

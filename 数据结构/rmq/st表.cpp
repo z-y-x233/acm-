@@ -5,10 +5,10 @@ struct rmq
 	vector<vector<int>> f;
 	rmq(){}
 	rmq(int * a, int n) {
-		ini(a, n);
+		init(a, n);
 	}
 	//a为原始序列
-	void ini(int *a, int n) {
+	void init(int *a, int n) {
 		f.resize(n + 1);
 		for (int i = 0; i <= n; ++i) {
 			f[i].resize(40);

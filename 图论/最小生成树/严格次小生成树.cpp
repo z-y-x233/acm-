@@ -67,6 +67,7 @@ int lca(int u, int v, int w) {
 				v = fa[v][i];
 			}
 		}
+		//把当前节点到lca的那条边更新
 		update(dis1, dis2, imax[u][0]);
 		update(dis1, dis2, imax[v][0]);
 	}

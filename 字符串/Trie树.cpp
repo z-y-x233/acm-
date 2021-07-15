@@ -1,6 +1,6 @@
 struct Trie
 {
-	int tr[N][27];
+	int t[N][27];
 	int cnt[N];
 	int idx;
 	void insert(char* s) {
@@ -14,11 +14,12 @@ struct Trie
 	}
 
 	int find(char* s) {
-		int cur = 0;
+		int u = 0;
 		for (int i = 1; s[i]; ++i) {
-			if (!tr[cur].son[s[i] - 'a']) return 0;
-			else cur = tr[cur].son[s[i] - 'a'];
+			int v = s[i] - 'a';
+			if (!t[u][v]) return 0;
+			u = t[u][v];
 		}
-		return tr[cur].cnt;
+		return cnt[u];
 	}
 }tr;
